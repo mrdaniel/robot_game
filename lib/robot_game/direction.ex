@@ -1,12 +1,17 @@
 defmodule RobotGame.Direction do
-  @directions ["NORTH", "EAST", "SOUTH", "WEST"]
-  
+  @directions [
+    {"NORTH", :move_up},
+    {"EAST",  :move_right},
+    {"SOUTH", :move_down},
+    {"WEST",  :move_left}
+  ]
+
   def list_directions do
-    @directions
+    @directions |> Enum.map(fn {k, _v} -> k end)
   end
 
   def directions_count do
-    @directions |> Enum.count
+    list_directions() |> Enum.count
   end
 
   def turn(current_direction, side) do
@@ -17,7 +22,7 @@ defmodule RobotGame.Direction do
   end
 
   def find_index(current_direction) do
-    @directions |> Enum.find_index(&(&1 == current_direction))
+    list_directions() |> Enum.find_index(&(&1 == current_direction))
   end
 
   def shift_index(index, "RIGHT") do
@@ -36,6 +41,16 @@ defmodule RobotGame.Direction do
   end
 
   def select_direction(index) do
-    @directions |> Enum.at(index)
+    list_directions() |> Enum.at(index)
+  end
+
+  def as_atom(direction) do
+    {_direction, atom} =
+      @directions
+      |> Enum.find(fn {key, _val} ->
+        key == direction
+      end)
+
+    atom
   end
 end

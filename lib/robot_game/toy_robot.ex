@@ -52,11 +52,11 @@ defmodule RobotGame.ToyRobot do
   end
 
   defp update_coordinates(%{x: x, y: y, direction: direction} = placement) do
-    case direction do
-      "NORTH" -> %{placement | y: y + 1}
-      "EAST"  -> %{placement | x: x + 1}
-      "SOUTH" -> %{placement | y: y - 1}
-      "WEST"  -> %{placement | x: x - 1}
+    case Direction.as_atom(direction) do
+      :move_up    -> %{placement | y: y + 1}
+      :move_right -> %{placement | x: x + 1}
+      :move_down  -> %{placement | y: y - 1}
+      :move_left  -> %{placement | x: x - 1}
     end
   end
 
