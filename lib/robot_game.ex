@@ -7,6 +7,7 @@ defmodule RobotGame do
     ------------------------------------------------------
     Welcome to the toy robot game!
     Initialised default 5x5 square board
+
     Available commands:
     * PLACE X,Y,DIRECTION (to start the game)
     * LEFT
