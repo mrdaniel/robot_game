@@ -34,23 +34,21 @@ defmodule RobotGame.Direction do
 
   defp do_shift_index(index) do
     cond do
-      index_exceeded_max?(index) -> first_item_index()
-      index_exceeded_min?(index) -> last_item_index()
+      index_exceeded?(index, :max) -> direction_index(:first)
+      index_exceeded?(index, :min) -> direction_index(:last)
       true -> index
     end
   end
 
-  defp index_exceeded_max?(index) do
+  defp index_exceeded?(index, :max) do
     index >= directions_count()
   end
-
-  defp index_exceeded_min?(index) do
+  defp index_exceeded?(index, :min) do
     index < 0
   end
 
-  defp first_item_index, do: 0
-
-  defp last_item_index do
+  defp direction_index(:first), do: 0
+  defp direction_index(:last) do
     directions_count() - 1
   end
 
