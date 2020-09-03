@@ -7,9 +7,10 @@ defmodule RobotGame.Supervisor do
 
   @impl true
   def init([]) do
-    children = [
-      RobotGame.GameState
-    ]
+    children = case Mix.env == :test do
+      true -> []
+      false -> [RobotGame.GameState]
+    end
 
     Supervisor.init(children, strategy: :one_for_one)
   end

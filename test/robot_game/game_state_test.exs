@@ -1,7 +1,12 @@
 defmodule RobotGame.GameStateTest do
-  use ExUnit.Case, async: true
+  use ExUnit.Case, async: false
 
   alias RobotGame.GameState
+
+  setup do
+    start_supervised(GameState)
+    :ok
+  end
 
   test "game initialises with default board size" do
     assert GameState.board == %{x: 5, y: 5}
