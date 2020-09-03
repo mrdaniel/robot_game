@@ -71,4 +71,29 @@ defmodule RobotGame.ToyRobotTest do
     assert ToyRobot.perform_command("REPORT") == {:ok, "0,5,NORTH"}
   end
 
+  describe "instruction examples" do
+    test "example a" do
+      ToyRobot.perform_command("PLACE", {0, 0, "NORTH"})
+      ToyRobot.perform_command("MOVE")
+
+      assert ToyRobot.perform_command("REPORT") == {:ok, "0,1,NORTH"}
+    end
+
+    test "example b" do
+      ToyRobot.perform_command("PLACE", {0, 0, "NORTH"})
+      ToyRobot.perform_command("LEFT")
+
+      assert ToyRobot.perform_command("REPORT") == {:ok, "0,0,WEST"}
+    end
+
+    test "example c" do
+      ToyRobot.perform_command("PLACE", {1, 2, "EAST"})
+      ToyRobot.perform_command("MOVE")
+      ToyRobot.perform_command("MOVE")
+      ToyRobot.perform_command("LEFT")
+      ToyRobot.perform_command("MOVE")
+
+      assert ToyRobot.perform_command("REPORT") == {:ok, "3,3,NORTH"}
+    end
+  end
 end
