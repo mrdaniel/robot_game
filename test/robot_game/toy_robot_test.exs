@@ -26,6 +26,28 @@ defmodule RobotGame.ToyRobotTest do
     assert ToyRobot.perform_command("REPORT") == :noop
   end
 
+  test "LEFT command when no placement present" do
+    assert ToyRobot.perform_command("LEFT") == :noop
+  end
+
+  test "LEFT command when placement present" do
+    ToyRobot.perform_command("PLACE", {3, 4, "SOUTH"})
+    ToyRobot.perform_command("LEFT")
+
+    assert ToyRobot.perform_command("REPORT") == {:ok, "3,4,EAST"}
+  end
+
+  test "RIGHT command when no placement present" do
+    assert ToyRobot.perform_command("RIGHT") == :noop
+  end
+
+  test "RIGHT command when placement present" do
+    ToyRobot.perform_command("PLACE", {3, 4, "SOUTH"})
+    ToyRobot.perform_command("RIGHT")
+
+    assert ToyRobot.perform_command("REPORT") == {:ok, "3,4,WEST"}
+  end
+
   test "REPORT command when robot hasn't been placed" do
     assert ToyRobot.perform_command("REPORT") == :noop
   end
