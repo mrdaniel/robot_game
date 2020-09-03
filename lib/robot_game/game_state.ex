@@ -16,8 +16,8 @@ defmodule RobotGame.GameState do
     {:ok, state}
   end
 
-  def board_size do
-    GenServer.call(__MODULE__, :board_size)
+  def board do
+    GenServer.call(__MODULE__, :board)
   end
 
   def report do
@@ -29,7 +29,7 @@ defmodule RobotGame.GameState do
   end
 
   @impl true
-  def handle_call(:board_size, _from, state) do
+  def handle_call(:board, _from, state) do
     {:reply, state.board, state}
   end
 
