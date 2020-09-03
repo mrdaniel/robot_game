@@ -1,15 +1,16 @@
 defmodule RobotGame.GameState do
   use GenServer
 
+  @default_board_size 5
+
   def start_link(_args) do
-    default_board_size = 5
-    GenServer.start_link(__MODULE__, default_board_size, name: __MODULE__)
+    GenServer.start_link(__MODULE__, @default_board_size, name: __MODULE__)
   end
 
   @impl true
-  def init(default_board_size) do
+  def init(default) do
     state = %{
-      board: %{x: default_board_size, y: default_board_size},
+      board: %{x: default, y: default},
       placement: %{}
     }
 

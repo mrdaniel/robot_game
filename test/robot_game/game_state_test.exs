@@ -4,7 +4,7 @@ defmodule RobotGame.GameStateTest do
   alias RobotGame.GameState
 
   test "game initialises with default board size" do
-    assert GameState.board_size == %{x: 5, y: 5}
+    assert GameState.board == %{x: 5, y: 5}
   end
 
   test "game initialises with no placement" do
