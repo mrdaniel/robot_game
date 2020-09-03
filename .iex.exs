@@ -1,0 +1,2 @@
+IO.puts RobotGame.instructions
+RobotGame.await_user_input

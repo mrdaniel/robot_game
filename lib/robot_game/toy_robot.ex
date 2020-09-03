@@ -3,7 +3,7 @@ defmodule RobotGame.ToyRobot do
 
   alias RobotGame.{GameState, Direction}
 
-  def perform_command("PLACE", {x, y, direction}) do
+  def perform_command({"PLACE", {x, y, direction}}) do
     board = GameState.board
     direction_list = Direction.list_directions
 
@@ -65,7 +65,7 @@ defmodule RobotGame.ToyRobot do
   end
 
   defp set_placement(placement) do
-    perform_command("PLACE", {placement.x, placement.y, placement.direction})
+    perform_command({"PLACE", {placement.x, placement.y, placement.direction}})
   end
 
   defp format_placement(placement) do
