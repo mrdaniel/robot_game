@@ -9,7 +9,8 @@ defmodule RobotGame.GameState do
   @impl true
   def init(default_board_size) do
     state = %{
-      board: %{x: default_board_size, y: default_board_size}
+      board: %{x: default_board_size, y: default_board_size},
+      placement: %{}
     }
 
     {:ok, state}
@@ -19,8 +20,26 @@ defmodule RobotGame.GameState do
     GenServer.call(__MODULE__, :board_size)
   end
 
+  def report do
+    GenServer.call(__MODULE__, :report)
+  end
+
+  def place(%{} = placement) do
+    GenServer.cast(__MODULE__, {:place, placement})
+  end
+
   @impl true
   def handle_call(:board_size, _from, state) do
     {:reply, state.board, state}
+  end
+
+  @impl true
+  def handle_call(:report, _from, state) do
+    {:reply, state.placement, state}
+  end
+
+  @impl true
+  def handle_cast({:place, placement}, state) do
+    {:noreply, %{state | placement: placement}}
   end
 end
