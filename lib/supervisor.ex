@@ -7,7 +7,9 @@ defmodule RobotGame.Supervisor do
 
   @impl true
   def init([]) do
-    children = []
+    children = [
+      RobotGame.GameState
+    ]
 
     Supervisor.init(children, strategy: :one_for_one)
   end
