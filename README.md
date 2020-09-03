@@ -1,21 +1,15 @@
 # RobotGame
 
-**TODO: Add description**
+Toy robot code challenge build with Elixir version 1.10.
 
 ## Installation
 
-If [available in Hex](https://hex.pm/docs/publish), the package can be installed
-by adding `robot_game` to your list of dependencies in `mix.exs`:
+To install run the following commands:
 
-```elixir
-def deps do
-  [
-    {:robot_game, "~> 0.1.0"}
-  ]
-end
+```
+git clone https://github.com/mrdaniel/robot_game.git
+cd robot_game/
+iex -S mix
 ```
 
-Documentation can be generated with [ExDoc](https://github.com/elixir-lang/ex_doc)
-and published on [HexDocs](https://hexdocs.pm). Once published, the docs can
-be found at [https://hexdocs.pm/robot_game](https://hexdocs.pm/robot_game).
-
+You can contact me via my [blog](https://danielwachtel.com/).
