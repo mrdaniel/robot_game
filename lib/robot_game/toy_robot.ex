@@ -28,11 +28,6 @@ defmodule RobotGame.ToyRobot do
   end
 
   defp format_placement(placement) do
-    [
-      placement.x |> to_string,
-      placement.y |> to_string,
-      placement.direction
-    ]
-    |> Enum.join(",")
+    "#{placement.x},#{placement.y},#{placement.direction}"
   end
 end
