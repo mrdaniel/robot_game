@@ -20,6 +20,17 @@ defmodule RobotGame.ToyRobot do
   def perform_command("LEFT"), do: turn("LEFT")
   def perform_command("RIGHT"), do: turn("RIGHT")
 
+  def perform_command("MOVE") do
+    case GameState.report do
+      %{direction: _} = placement ->
+        placement
+        |> update_coordinates
+        |> set_placement
+      _ ->
+        :noop
+    end
+  end
+
   def perform_command("REPORT") do
     case GameState.report do
       %{direction: _, x: _, y: _} = placement ->
@@ -32,11 +43,29 @@ defmodule RobotGame.ToyRobot do
   defp turn(side) do
     case GameState.report do
       %{direction: current_direction} = placement ->
-        new_direction = Direction.turn(current_direction, side)
-        perform_command("PLACE", {placement.x, placement.y, new_direction})
+        Direction.turn(current_direction, side)
+        |> update_direction(placement)
+        |> set_placement
       _ ->
         :noop
     end
+  end
+
+  defp update_coordinates(%{x: x, y: y, direction: direction} = placement) do
+    case direction do
+      "NORTH" -> %{placement | y: y + 1}
+      "EAST"  -> %{placement | x: x + 1}
+      "SOUTH" -> %{placement | y: y - 1}
+      "WEST"  -> %{placement | x: x - 1}
+    end
+  end
+
+  defp update_direction(new_direction, placement) do
+    %{placement | direction: new_direction}
+  end
+
+  defp set_placement(placement) do
+    perform_command("PLACE", {placement.x, placement.y, placement.direction})
   end
 
   defp format_placement(placement) do

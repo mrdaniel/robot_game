@@ -48,6 +48,20 @@ defmodule RobotGame.ToyRobotTest do
     assert ToyRobot.perform_command("REPORT") == {:ok, "3,4,WEST"}
   end
 
+  test "MOVE command when valid" do
+    ToyRobot.perform_command("PLACE", {0, 0, "EAST"})
+    ToyRobot.perform_command("MOVE")
+
+    assert ToyRobot.perform_command("REPORT") == {:ok, "1,0,EAST"}
+  end
+
+  test "MOVE command when invalid" do
+    ToyRobot.perform_command("PLACE", {4, 4, "NORTH"})
+    ToyRobot.perform_command("MOVE")
+
+    assert ToyRobot.perform_command("REPORT") == {:ok, "4,4,NORTH"}
+  end
+
   test "REPORT command when robot hasn't been placed" do
     assert ToyRobot.perform_command("REPORT") == :noop
   end
