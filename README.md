@@ -1,6 +1,6 @@
 # RobotGame
 
-Toy robot code challenge build with Elixir version 1.10.
+Toy robot code challenge built with Elixir version 1.10.
 
 ## Installation
 
