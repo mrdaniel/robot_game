@@ -25,10 +25,10 @@ defmodule RobotGame.Direction do
     list_directions() |> Enum.find_index(&(&1 == current_direction))
   end
 
-  def shift_index(index, "RIGHT") do
+  def shift_index(index, :right) do
     do_shift_index(index + 1)
   end
-  def shift_index(index, "LEFT") do
+  def shift_index(index, :left) do
     do_shift_index(index - 1)
   end
 
