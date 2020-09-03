@@ -4,18 +4,18 @@ defmodule RobotGame.DirectionTest do
   alias RobotGame.Direction
 
   test "turn 'NORTH' direction 'RIGHT'" do
-    assert Direction.turn("NORTH", "RIGHT") == "EAST"
+    assert Direction.next_direction("NORTH", "RIGHT") == "EAST"
   end
 
   test "turn 'WEST' direction 'RIGHT'" do
-    assert Direction.turn("WEST", "RIGHT") == "NORTH"
+    assert Direction.next_direction("WEST", "RIGHT") == "NORTH"
   end
 
   test "turn 'NORTH' direction 'LEFT'" do
-    assert Direction.turn("NORTH", "LEFT") == "WEST"
+    assert Direction.next_direction("NORTH", "LEFT") == "WEST"
   end
 
   test "turn 'WEST' direction 'LEFT'" do
-    assert Direction.turn("WEST", "LEFT") == "SOUTH"
+    assert Direction.next_direction("WEST", "LEFT") == "SOUTH"
   end
 end

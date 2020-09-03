@@ -14,7 +14,7 @@ defmodule RobotGame.Direction do
     list_directions() |> Enum.count
   end
 
-  def turn(current_direction, side) do
+  def next_direction(current_direction, side) do
     current_direction
     |> find_index
     |> shift_index(side)

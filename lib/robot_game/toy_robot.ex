@@ -43,7 +43,7 @@ defmodule RobotGame.ToyRobot do
   defp turn(side) do
     case GameState.report do
       %{direction: current_direction} = placement ->
-        Direction.turn(current_direction, side)
+        Direction.next_direction(current_direction, side)
         |> update_direction(placement)
         |> set_placement
       _ ->
