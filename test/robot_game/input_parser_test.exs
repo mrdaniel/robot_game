@@ -15,6 +15,10 @@ defmodule RobotGame.InputParserTest do
     assert InputParser.parse("PLACE 1,2\n") == {:error, "PLACE 1,2"}
   end
 
+  test "parse/1 for command with invalid integer arguments" do
+    assert InputParser.parse("PLACE 1,woops,NORTH\n") == {:error, "PLACE 1,woops,NORTH"}
+  end
+
   test "parse/1 for single unknown command" do
     assert InputParser.parse("FOOBAR\n") == {:error, "FOOBAR"}
   end
