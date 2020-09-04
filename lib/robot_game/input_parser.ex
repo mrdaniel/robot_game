@@ -10,16 +10,33 @@ defmodule RobotGame.InputParser do
     command |> atomise_command
   end
   defp do_parse([command, arguments]) do
-    [x, y, direction] = arguments |> String.split(",")
+    argument_list = arguments |> String.split(",")
 
-    {
-      atomise_command(command),
-      [
-        String.to_integer(x),
-        String.to_integer(y),
-        String.upcase(direction)
-      ]
-    }
+    case arguments_valid?(argument_list) do
+      true ->
+        [x, y, direction] = argument_list
+
+        {
+          atomise_command(command),
+          [
+            String.to_integer(x),
+            String.to_integer(y),
+            String.upcase(direction)
+          ]
+        }
+      false ->
+        {:error, Enum.join([command, arguments], " ")}
+    end
+  end
+  defp do_parse(list) do
+    {:error, Enum.join(list, " ")}
+  end
+
+  defp arguments_valid?(arguments) do
+    case arguments do
+      [_x, _y, _direction] -> true
+      _ -> false
+    end
   end
 
   defp atomise_command(command) do
