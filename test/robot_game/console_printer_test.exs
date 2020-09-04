@@ -5,7 +5,7 @@ defmodule RobotGame.ConsolePrinterTest do
   alias RobotGame.ConsolePrinter
 
   test "print/1 outputs message when match occurs" do
-    assert capture_io(fn -> ConsolePrinter.print({:ok, "Hello there!"}) end) == "Hello there!\n"
+    assert capture_io(fn -> ConsolePrinter.print({:reply, "Hello there!"}) end) == "Hello there!\n"
   end
 
   test "print/1 outputs message when no match occurs" do

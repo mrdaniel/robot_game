@@ -34,10 +34,18 @@ defmodule RobotGame.ToyRobot do
   def perform_command(:report) do
     case GameState.report do
       %{direction: _, x: _, y: _} = placement ->
-        {:ok, format_placement(placement)}
+        {:reply, format_placement(placement)}
       _ ->
         :noop
     end
+  end
+
+  def perform_command({:error, command}) do
+    {:reply, "Unkown command: #{command}"}
+  end
+
+  def perform_command(_) do
+    {:reply, "Unkown command"}
   end
 
   defp turn(side) do

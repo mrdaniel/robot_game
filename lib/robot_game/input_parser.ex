@@ -23,8 +23,12 @@ defmodule RobotGame.InputParser do
   end
 
   defp atomise_command(command) do
-    command
-    |> String.downcase
-    |> String.to_existing_atom
+    try do
+      command
+      |> String.downcase
+      |> String.to_existing_atom
+    rescue
+      ArgumentError -> {:error, command}
+    end
   end
 end
