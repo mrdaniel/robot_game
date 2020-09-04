@@ -44,8 +44,8 @@ defmodule RobotGame.ToyRobot do
     {:reply, "Unknown command: #{command}"}
   end
 
-  def perform_command(_) do
-    {:reply, "Unknown command"}
+  def perform_command(command) do
+    {:reply, "Unknown command: #{command}"}
   end
 
   defp turn(side) do

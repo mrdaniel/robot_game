@@ -76,6 +76,6 @@ defmodule RobotGame.ToyRobotTest do
   end
 
   test "Return error message for blank command" do
-    assert ToyRobot.perform_command("") == {:reply, "Unknown command"}
+    assert ToyRobot.perform_command("") == {:reply, "Unknown command: "}
   end
 end
