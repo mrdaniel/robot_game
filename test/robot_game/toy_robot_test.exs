@@ -71,11 +71,11 @@ defmodule RobotGame.ToyRobotTest do
     assert ToyRobot.perform_command(:report) == {:reply, "0,5,NORTH"}
   end
 
-  test "Return error message for unkown command" do
-    assert ToyRobot.perform_command({:error, "FOOBAR"}) == {:reply, "Unkown command: FOOBAR"}
+  test "Return error message for unknown command" do
+    assert ToyRobot.perform_command({:error, "FOOBAR"}) == {:reply, "Unknown command: FOOBAR"}
   end
 
   test "Return error message for blank command" do
-    assert ToyRobot.perform_command("") == {:reply, "Unkown command"}
+    assert ToyRobot.perform_command("") == {:reply, "Unknown command"}
   end
 end
